@@ -1,10 +1,14 @@
-(function(React) {
+(function(React, _) {
   var App = require('./components/App.jsx'),
-      SongService = require('./services/SongService.js');
+      Song = require('./models/SongModel.js');
+  
+  _.mixin(_.string.exports());
   
   var render = function() {
-    React.render(React.createFactory(App)({ songs: SongService.getSongs() }), document.body);
+    React.render(React.createFactory(App)({
+      songs: Song.query()
+    }), document.body);
   };
   render();
-  SongService.subscribe(render);
-}(React));
+  Song.subscribe(render);
+}(React, _));

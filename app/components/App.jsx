@@ -1,5 +1,6 @@
 (function(React, module, undefined) {
   var Songs = require('./Songs.jsx'),
+      SongForm = require('./SongForm.jsx'),
       SongAlert = require('./SongAlert.jsx');
   
   module.exports = React.createClass({
@@ -16,6 +17,7 @@
           
           {alert}
           <Songs data={this.props.songs} />
+          <SongForm />
         </div>
       );
     },
