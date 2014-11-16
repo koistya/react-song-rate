@@ -10,9 +10,9 @@
         return new SongModel(song);
       });
     },
-    publish: function(song) {
+    publish: function(data) {
       _.each(this.subscribers, function(callback) {
-        callback(song);
+        callback(data);
       });
       LSService.store(data);
     },
