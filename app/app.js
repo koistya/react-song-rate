@@ -5,9 +5,7 @@
   _.mixin(_.string.exports());
   
   var render = function() {
-    React.render(React.createFactory(App)({
-      songs: Song.query()
-    }), document.body);
+    React.render(React.createElement({ songs: Song.query() }), document.body);
   };
   render();
   Song.subscribe(render);
