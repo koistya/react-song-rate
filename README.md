@@ -1,21 +1,14 @@
-# AngularJS Song rating app
-This small web application demonstrates the features of AngularJS. In this example I'm using controllers, filters, factories and directives. Also various concepts and attributes of AngularJS are explained.
-I''m using this aplication in a tutorial series of mine to introduce AngularJS, so make sure to read it:
-
-- [An introduction to AngularJS](http://g00glen00b.be/angularjs-introduction)
-- [Jasminify your AngularJS application](http://g00glen00b.be/jasminify-angular-app/)
-- [Making your AngularJS application grunt](http://g00glen00b.be/angular-grunt/)
-- [Get more with Less using Grunt](http://g00glen00b.be/less-grunt/)
-- [Drinking the new build system Gulp with your Angular app](http://g00glen00b.be/gulp-angular)
+# React.js Song rating app
+This small web application demonstrates how you coulduse React.js for building applications. In this example I'm using JSX based components and Browserify to manage component dependencies.
 
 ## Installation
 Clone this repo and install all dependencies by using `bower install`. If you're not interested in Bower you can still manually install al libraries.
 
 ## Libraries
 
-### AngularJS
-AngularJS is an MVC framework for the front-end written by Google. It allows you to follow the MVC design pattern and to loosely couple your view and the logic behind it.
-This improves the design of your application and it makes it easier to test it as well.
+### React.js
+React.js is a library for building user interfaces using components. React.js is written by the folks of Facebook and Instagram and allows batched user interface updates by using the virtual DOM.
+This improves the performance and usuability of your application.
 
 ### Twitter Bootstrap
 Twitter Bootstrap is a responsive UI library written by Twitter.
