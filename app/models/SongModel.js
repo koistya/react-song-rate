@@ -1,19 +1,10 @@
 (function(_) {
-  var data = [{
-    id: 1,
-    artist: "Nightwish",
-    title: "Ghost Loves Score",
-    score: 3
-  }, {
-    id: 2,
-    artist: "Rammstein",
-    title: "Mein Teil",
-    score: 3
-  }];
+  var LSService = require('../services/LSService.js'),
+      data = LSService.read();
   
   var statics = {
     subscribers: [],
-    counter: 10,
+    counter: LSService.read() && LSService.read().length > 0 ? LSService.read().slice(-1).pop().id + 1 : 1,
     query: function() {
       return _.map(data, function(song) {
         return new SongModel(song);
@@ -23,6 +14,7 @@
       _.each(this.subscribers, function(callback) {
         callback(song);
       });
+      LSService.store(data);
     },
     subscribe: function(callback) {
       this.subscribers.push(callback);
@@ -42,7 +34,7 @@
       } else {
         data.push(mySong);
       }
-      this.publish(mySong);
+      this.publish(data);
     }
   };
   

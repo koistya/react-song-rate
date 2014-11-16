@@ -8,6 +8,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     jshint = require('gulp-jshint'),
+    gutil = require('gulp-util'),
     path = require('path'),
     browserSync = require('browser-sync'),
     pkg = require('./package.json'),
@@ -71,6 +72,7 @@ gulp.task('bower', function() {
     insertGlobals : true,
     debug : !gulp.env.production
   }))
+  .on('error', gutil.log)
   .pipe(gulp.dest('dist'));
 })
 .task('js:min', function() {
@@ -79,6 +81,7 @@ gulp.task('bower', function() {
     insertGlobals : true,
     debug : !gulp.env.production
   }))
+  .on('error', gutil.log)
   .pipe(uglify())
   .pipe(gulp.dest('dist'));
 })
