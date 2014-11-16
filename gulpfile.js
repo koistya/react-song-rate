@@ -3,6 +3,8 @@ var gulp = require('gulp'),
     run = require('gulp-run'),
     less = require('gulp-less'),
     cssmin = require('gulp-minify-css'),
+    browserify = require('gulp-browserify'),
+    rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     jshint = require('gulp-jshint'),
@@ -64,38 +66,37 @@ gulp.task('bower', function() {
 
 /** JavaScript compilation */
 .task('js', function() {
-  return gulp.src(['app/**/*.js'])
-  .pipe(concat('app.js'))
+  return gulp.src(['app/app.js'])
+  .pipe(browserify({
+    insertGlobals : true,
+    debug : !gulp.env.production
+  }))
   .pipe(gulp.dest('dist'));
 })
 .task('js:min', function() {
-  return gulp.src(['app/**/*.js'])
+  return gulp.src(['app/app.js'])
+  .pipe(browserify({
+    insertGlobals : true,
+    debug : !gulp.env.production
+  }))
   .pipe(uglify())
-  .pipe(concat('app.js'))
-  .pipe(gulp.dest('dist'));
-})
-
-/** JSX Component compilation */
-.task('jsx', function() {
-  return gulp.src(['app/components/*.jsx'])
-  .pipe(concat('components.js'))
   .pipe(gulp.dest('dist'));
 })
 
 /**
  * Compiling resources and serving application
  */
-.task('serve', ['bower', 'clean', 'lint', 'less', 'js', 'jsx', 'server'], function() {
+.task('serve', ['bower', 'clean', 'lint', 'less', 'js', 'server'], function() {
   return gulp.watch([
-    '*.js', 'app/**/*.js', 'app/**/*.jsx', '*.html', 'assets/**/*.less'
+    'app/**/*.js', 'app/**/*.jsx', '*.html', 'assets/**/*.less'
   ], [
-   'lint', 'less', 'js', 'jsx', browserSync.reload
+   'lint', 'less', 'js', browserSync.reload
   ]);
 })
-.task('serve:minified', ['bower', 'clean', 'lint', 'less:min', 'js:min', 'jsx', 'server'], function() {
+.task('serve:minified', ['bower', 'clean', 'lint', 'less:min', 'js:min', 'server'], function() {
   return gulp.watch([
-    '*.js', 'app/**/*.js', 'app/**/*.jsx', '*.html', 'assets/**/*.less'
+    'app/**/*.js', 'app/**/*.jsx', '*.html', 'assets/**/*.less'
   ], [
-   'lint', 'less:min', 'js:min', 'jsx', browserSync.reload
+   'lint', 'less:min', 'js:min', browserSync.reload
   ]);
 });

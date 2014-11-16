@@ -1,8 +1,5 @@
-(function(App, React, undefined) {
-  if (App === undefined) {
-   App = window.App = {}; 
-  }
-  App.Song = React.createClass({
+(function(React, module, undefined) {
+  module.exports = React.createClass({
     render: function() {
       return (
         <tr>
@@ -12,7 +9,7 @@
               <small>{this.props.data.title}</small>
             </div>
             <div className="pull-right">
-              <button type="button" className="btn btn-danger pull-right">
+              <button type="button" className="btn btn-danger pull-right" onClick={this.deleteSong}>
                 <i className="fa fa-trash-o"></i>
               </button>
             </div>
@@ -20,8 +17,10 @@
         </tr> 
       );
     },
+    deleteSong: function() {
+      this.props.data.delete();
+    },
     getInitialState: function() {
-      console.log(this.props);
       return {
         title: "",
         artist: "",
@@ -29,4 +28,4 @@
       };
     }
   });
-}(window.App, React));
+}(React, module));

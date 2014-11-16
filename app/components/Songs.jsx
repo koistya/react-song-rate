@@ -1,8 +1,7 @@
-(function(App, React, undefined) {
-  if (App === undefined) {
-   App = window.App = {}; 
-  }
-  App.Songs = React.createClass({
+(function(React, module, undefined) {
+  var Song = require('./Song.jsx');
+  
+  module.exports = React.createClass({
     render: function() {
       return (
         <table className="table table-striped table-condensed">
@@ -13,11 +12,11 @@
           </thead>
           <tbody>
             {this.props.data.map(function(song) {
-              return <App.Song key={song.id} data={song}/>;
+              return <Song key={song.id} data={song}/>;
             })}
           </tbody>
         </table>
       );
     }
   });
-}(window.App, React));
+}(React, module));

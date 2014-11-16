@@ -9,6 +9,8 @@
     "gulp-uglify": "latest",
     "gulp-minify-css": "latest",
     "gulp-jshint": "latest",
+    "gulp-browserify": "latest",
+    "gulp-rename": "latest",
     "browser-sync": "latest",
     "del": "latest"
   }
